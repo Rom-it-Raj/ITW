@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homepage</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #1a1c1a;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 100px;
+      flex-wrap: wrap;
+      padding: 40px;
+    }
+
+    .button-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button-wrapper button {
+      width: 410px;
+      height: 285px;
+      cursor: pointer;
+      border: none;
+      border-radius: 15px;
+      background-color: #333;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 6px 14px rgba(0, 255, 153, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    }
+
+    .button-wrapper button:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(0, 255, 153, 0.3);
+      filter: brightness(1.1);
+    }
+
+    .button-wrapper p {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #00ff99;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    @media screen and (max-width: 1000px) {
+      .button-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .button-wrapper button {
+        width: 90vw;
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <div class="button-wrapper">
+      <button
+        style="background-image: url('https://static.vecteezy.com/system/resources/previews/013/247/522/non_2x/doodle-checklist-set-to-do-task-list-vector.jpg');"
+        onclick="window.location.href='To-Do.htm';">
+      </button>
+      <p>To-Do List</p>
+    </div>
+
+    <div class="button-wrapper">
+      <button
+        style="background-image: url('https://media.licdn.com/dms/image/v2/D5612AQGplp7JKG6Iiw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1673950361361?e=2147483647&v=beta&t=L4d5P81GijVgU4u1yJtFLVsIqATkfWTrymEPSd_C6_o');"
+        onclick="window.location.href='Expensetracker.htm';">
+      </button>
+      <p>Expense Tracker</p>
+    </div>
+
+    <div class="button-wrapper">
+      <button
+        style="background-image: url('https://static01.nyt.com/images/2024/02/27/well/23Well-fitness-data/23Well-fitness-data-superJumbo.jpg');"
+        onclick="window.location.href='Fitnesstracker.htm';">
+      </button>
+      <p>Fitness Tracker</p>
+    </div>
+  </div>
+</body>
+</html>

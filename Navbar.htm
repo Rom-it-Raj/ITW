@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Personal Tracker App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1c1a;
+            color: #eee;
+        }
+
+        @keyframes grad {
+            to {
+                background-position: 200%;
+            }
+        }
+
+        .gradient {
+            background: linear-gradient(to right bottom,  #00ccff, #00ff99);
+            background-size: 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: grad 3s linear infinite;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 0 40px;
+            background-color: #ffffff25;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #00ff2a;
+        }
+
+        nav a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background-color: #00ff2a;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav li:hover .tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: -45px;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            white-space: pre-line;
+            opacity: 0;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .logreg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('Nav1.jpg'); /* ✅ Corrected */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-height: 300px;
+    width: 100%;
+}
+
+        .logreg a {
+            padding: 25px;
+        }
+
+        .logreg button {
+            width: 150px;
+            height: 55px;
+            background: linear-gradient(to right, #00ff99, #00ccff);
+            color: #fff;
+            border-radius: 15px;
+            font-size: 25px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 300ms ease;
+        }
+
+        .logreg button:hover {
+            background: linear-gradient(to right, #00ccff, #00ff99);
+            transform: translateY(-2px);
+        }
+
+        /* Flexbox for Three Equal Columns */
+        .ver {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 40px;
+            flex-wrap: wrap;
+            margin: 0 20px;
+        }
+
+        .section {
+            flex: 1;
+            background-color: #222;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 255, 153, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+            min-width: 280px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #00ff99;
+        }
+
+        .section p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(to right, #00ff99, #00ccff);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 255, 153, 0.2);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(to right, #00ccff, #00ff99);
+            box-shadow: 0 6px 16px rgba(0, 255, 153, 0.4);
+        }
+
+        @media screen and (max-width: 900px) {
+            .ver {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section {
+                flex: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1 class="gradient">
+            <i class="fa-solid fa-seedling"></i> Daily Axis
+        </h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#home"><i class="fa-solid fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#todo"><i class="fa-solid fa-list-check"></i> To-Do List</a>
+                    <div class="tooltip">Organize tasks and set priorities.</div>
+                </li>
+                <li>
+                    <a href="#expenses"><i class="fa-solid fa-money-check-dollar"></i> Expense Tracker</a>
+                    <div class="tooltip">Track daily spending and budgeting.</div>
+                </li>
+                <li>
+                    <a href="#fitness"><i class="fa-solid fa-calendar-days"></i> Fitness Tracker</a>
+                    <div class="tooltip">Log workouts and monitor progress.</div>
+                </li>
+                <li>
+                    <a href="Login.htm"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Buttons -->
+    <div class="logreg">
+        <div>
+            <pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </pre>
+        </div>
+    </div>
+
+    <!-- Three Equal Columns -->
+    <div class="ver">
+        <section class="section" id="todo">
+            <h2><i class="fa-solid fa-list-check"></i> To-Do List</h2>
+            <p>The To-Do List helps you stay organized and manage your daily tasks efficiently. You can create, edit, and delete tasks as needed, and mark them as complete when finished. Whether you're planning your day, managing a project, or keeping track of reminders, the To-Do List ensures nothing slips through the cracks. It's a simple yet powerful way to boost productivity and stay on top of your goals.</p>
+        </section>
+
+        <section class="section" id="expenses">
+            <h2><i class="fa-solid fa-money-check-dollar"></i> Expense Tracker</h2>
+            <p>Keeping track of your money doesn’t have to be a hassle. The Expense Tracker helps you stay on top of your spending in a super simple way. Add your daily expenses, break them down into categories like food, transport, shopping, or bills, and see where your money’s really going.
+
+            You’ll get an overview of how much you’ve spent in total, what your biggest spending areas are, and even some helpful charts to spot trends. Set monthly budgets for each category to keep your spending in check, and never be surprised at the end of the month again. It’s perfect for anyone trying to save, budget better, or just be more aware of their finances.</p>
+        </section>
+
+        <section class="section" id="fitness">
+            <h2><i class="fa-solid fa-calendar-days"></i> Fitness Tracker</h2>
+            <p>The Fitness Tracker helps you stay motivated and on top of your health goals. Whether you’re trying to build a workout routine, track your progress, or just be more active, this tool’s got you covered.
+
+            Log your workouts, track things like steps, distance, or calories burned, and set fitness goals that match your lifestyle. You can monitor your progress over time with stats and simple visuals, so it’s easy to see how far you’ve come. Whether you’re hitting the gym, going for walks, or doing home workouts, the Fitness Tracker keeps everything in one place to help you stay consistent and focused.</p>
+        </section>
+    </div>
+    <div class="ver">
+        <section class="section" id="about">
+            <h2><i class="fa-solid fa-circle-info"></i> About This Website</h2>
+            <p>This Personal Tracker App is designed to help you stay organized, healthy, and financially aware—all in one place. Whether you're juggling a busy schedule, working toward fitness goals, or keeping an eye on your budget, this app simplifies it all.
+    
+            With easy-to-use features like the To-Do List, Expense Tracker, and Fitness Tracker, you can manage your daily life with clarity and confidence. Everything is built to be straightforward, visually engaging, and totally focused on helping *you* succeed.
+    
+            It's your personal dashboard for productivity, wellness, and mindful living. Simple. Powerful. Personal.</p>
+        </section>
+    </div>
+
+    
+
+</body>
+</html>

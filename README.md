@@ -1,7 +1,4 @@
-some inner air !
-Waka waka
-
-Helo
-Hello2
-Hle
+I have removed everything
+now just new things
+just this project
 

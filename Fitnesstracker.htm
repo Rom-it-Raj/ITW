@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fitness Tracker</title>
+  <style>
+    :root {
+      --bg-color: #f0f4f8;
+      --container-bg: #ffffff;
+      --text-color: #333;
+      --input-bg: #ffffff;
+      --input-border: #ccc;
+      --button-bg: #007bff;
+      --button-hover: #0056b3;
+      --submit-bg: #28a745;
+      --submit-hover: #218838;
+      --result-bg: #e9f7ef;
+      --result-border: #c3e6cb;
+      --result-text: #155724;
+    }
+
+    body.dark-mode {
+      --bg-color: #1e1e1e;
+      --container-bg: #2c2c2c;
+      --text-color: #f1f1f1;
+      --input-bg: #3c3c3c;
+      --input-border: #555;
+      --button-bg: #4444aa;
+      --button-hover: #333388;
+      --submit-bg: #3c9f50;
+      --submit-hover: #317e40;
+      --result-bg: #223322;
+      --result-border: #447744;
+      --result-text: #ccffcc;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+    }
+
+    .nav-buttons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .nav-buttons button,
+    .theme-toggle button {
+      padding: 6px 12px;
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .nav-buttons button:hover,
+    .theme-toggle button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 80px auto 40px auto;
+      background: var(--container-bg);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 6px;
+      color: var(--text-color);
+    }
+
+    input[type="submit"] {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: var(--submit-bg);
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--submit-hover);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 15px;
+      background-color: var(--result-bg);
+      border: 1px solid var(--result-border);
+      border-radius: 6px;
+      color: var(--result-text);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Buttons -->
+  <div class="nav-buttons">
+    <button onclick="window.location.href='Homepage.htm';">⬅ Back</button>
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <div class="theme-toggle">
+    <button onclick="toggleTheme()">🌓 Toggle Theme</button>
+  </div>
+
+  <div class="container">
+    <h2>Calories Burned Calculator</h2>
+    <form onsubmit="Calories(event)">
+      <label for="walk">Distance walked/run (in kms):</label>
+      <input type="number" id="walk" />
+
+      <label for="cycle">Distance cycled (in kms):</label>
+      <input type="number" id="cycle" />
+
+      <h3>Exercise (Reps):</h3>
+
+      <label for="push">Push-ups:</label>
+      <input type="number" id="push" />
+
+      <label for="squat">Squats:</label>
+      <input type="number" id="squat" />
+
+      <label for="jack">Jumping Jacks:</label>
+      <input type="number" id="jack" />
+
+      <label for="skip">Skipping:</label>
+      <input type="number" id="skip" />
+
+      <label for="pull">Pull-ups:</label>
+      <input type="number" id="pull" />
+
+      <input type="submit" value="Calculate Calories" />
+    </form>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function Calories(e) {
+      e.preventDefault();
+
+      const walk = parseFloat(document.getElementById("walk").value) || 0;
+      const cycle = parseFloat(document.getElementById("cycle").value) || 0;
+      const push = parseInt(document.getElementById("push").value) || 0;
+      const squat = parseInt(document.getElementById("squat").value) || 0;
+      const jack = parseInt(document.getElementById("jack").value) || 0;
+      const skip = parseInt(document.getElementById("skip").value) || 0;
+      const pull = parseInt(document.getElementById("pull").value) || 0;
+
+      const totalcalories =
+        walk * 55 +
+        cycle * 30 +
+        push * 0.5 +
+        squat * 0.32 +
+        jack * 0.3 +
+        skip * 0.15 +
+        pull * 1;
+
+      let feedback = "";
+
+      if (totalcalories > 800) {
+        feedback = "🔥 Rest a Little";
+      } else if (totalcalories > 500 && totalcalories <= 800) {
+        feedback = "✅ Good for weight loss";
+      } else if (totalcalories >= 300 && totalcalories <= 500) {
+        feedback = "😊 Good for weight maintenance";
+      } else {
+        feedback = "💪 Try to exercise a bit more!";
+      }
+
+      document.getElementById("result").innerHTML =
+        "<h2>Total calories burned: <strong>" +
+        totalcalories.toFixed(2) +
+        " cal</strong></h2><br>" +
+        "<h2>" +
+        feedback +
+        "</h2>";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+</body>
+</html>
